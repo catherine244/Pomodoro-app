@@ -16,7 +16,7 @@ def load_user(user_id):
 	return Member.query.get(int(user_id))
 
 # Home page
-@app.route('/')
+@auth.route('/')
 def index():	
 	return render_template('home.html')
 
@@ -39,7 +39,7 @@ def getTodos():
 
 
 # Login page
-@app.route('/login', methods=["GET", "POST"])
+@auth.route('/login', methods=["GET", "POST"])
 def login():
 	form = LoginForm()
 
@@ -57,7 +57,7 @@ def login():
 
 
 # user registration page
-@app.route('/register', methods=["GET", "POST"])
+@auth.route('/register', methods=["GET", "POST"])
 def register():
 	form = RegisterForm()
 
@@ -79,7 +79,7 @@ def register():
 
 
 # logout user
-@app.route('/logout')
+@auth.route('/logout')
 @login_required
 def logout():
 	session['logged_in'] = False
@@ -88,7 +88,7 @@ def logout():
 
 
 # pomodoro-tracker page
-@app.route('/pomodoro', methods=["GET", "POST"])
+@auth.route('/pomodoro', methods=["GET", "POST"])
 @login_required
 def pomodoro():
 	session['registrationRedirect'] = False
@@ -128,7 +128,7 @@ def pomodoro():
 
 
 # todos manager
-@app.route('/todos', methods=["GET", "POST"])
+@auth.route('/todos', methods=["GET", "POST"])
 @login_required
 def todos():
 	todos = getTodos()	
@@ -136,7 +136,7 @@ def todos():
 
 
 # add new todos
-@app.route('/add_todo', methods=["GET", "POST"])
+@auth.route('/add_todo', methods=["GET", "POST"])
 @login_required
 def add_todo():
 	if request.method == 'POST':
@@ -158,7 +158,7 @@ def add_todo():
 
 
 # edit todos
-@app.route('/edit_todo/<string:id>', methods=["GET", "POST"])
+@auth.route('/edit_todo/<string:id>', methods=["GET", "POST"])
 @login_required
 def edit_todo(id):
 	editTodo = Todos.query.filter_by(id=id).first()
@@ -178,7 +178,7 @@ def edit_todo(id):
 			return render_template('edit_todo.html',editTodo=editTodo)
 
 # delete todos
-@app.route('/delete_todo/<string:id>', methods=["POST"])
+@auth.route('/delete_todo/<string:id>', methods=["POST"])
 @login_required
 def delete_todo(id):
 	delTodo = Todos.query.filter_by(id=id).first()
@@ -189,7 +189,7 @@ def delete_todo(id):
 
 
 # feedback page
-@app.route('/feedback', methods=["GET", "POST"])
+@auth.route('/feedback', methods=["GET", "POST"])
 def feedback():	
 	if request.method == 'POST':
 		member_username = "guest"
