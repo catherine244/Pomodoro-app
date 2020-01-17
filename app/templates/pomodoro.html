@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+{% block head %}
+	<script src="/static/lib/easytimer/dist/easytimer.min.js"></script>
+	<script id="pomodoro" type="text/javascript" src="/static/pomodoro.js" timerTarget={{timerTarget}}
+			breakTarget={{breakTarget}}>
+	</script>
+	<link rel="stylesheet" type="text/css" href="/static/pomodoro.css">
+{% endblock %}
+
+{% block body %}
+	<br><br><br><br>
+	<div id="chronoExample">
+    	<div class="values">00:00:00</div>
+		<div>
+			<button class="btn btn-lg btn-success startButton">Start</button>
+	        <button class="btn btn-lg btn-danger pauseButton" >Pause</button>
+	        <button class="btn btn-lg btn-warning resetButton">Reset</button>
+	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModal">
+		Settings
+	</button>
