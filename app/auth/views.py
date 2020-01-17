@@ -16,7 +16,7 @@ def load_user(user_id):
 	return Member.query.get(int(user_id))
 
 # Home page
-@auth.route('/')
+@main.route('/')
 def index():	
 	return render_template('index.html')
 
@@ -24,7 +24,7 @@ def index():
 
 
 # Login page
-@auth.route('/login', methods=["GET", "POST"])
+@main.route('/login', methods=["GET", "POST"])
 def login():
 	form = LoginForm()
 
@@ -42,7 +42,7 @@ def login():
 
 
 # user registration page
-@auth.route('/register', methods=["GET", "POST"])
+@main.route('/register', methods=["GET", "POST"])
 def register():
 	form = RegisterForm()
 
@@ -64,7 +64,7 @@ def register():
 
 
 # logout user
-@auth.route('/logout')
+@main.route('/logout')
 @login_required
 def logout():
 	session['logged_in'] = False
