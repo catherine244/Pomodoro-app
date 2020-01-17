@@ -18,7 +18,7 @@ def load_user(user_id):
 # Home page
 @main.route('/')
 def index():	
-	return render_template('index.html')
+	return render_template('home.html')
 
 
 
